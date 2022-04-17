@@ -51,3 +51,32 @@ int _strlen(char *s)
 	}
 	return (i);
 }
+
+/**
+ * convert_to_format - convert from a format to another
+ * @number: unsigned int
+ * @base: base representation
+ * Return: is a pointer to string
+ */
+
+char *convert_to_format(unsigned int number, int base)
+{
+	char *str;
+
+	char representation[] = "0123456789ABCDEF";
+
+	static char buffer[128];
+
+	int mod = 0;
+
+	str = &buffer[127];
+
+	*str = '\0';
+
+	do {
+		mod = number % base;
+		*--str = representation[mod];
+		number /= base;
+	} while (number != 0);
+	return (str);
+}
