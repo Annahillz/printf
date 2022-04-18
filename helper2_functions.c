@@ -32,11 +32,11 @@ int print_signInt(va_list arg, int base)
 	{
 		i = -(i);
 		count += _putchar('-');
-		s = convert_to_format("0123456789ABCDEF", i, base);
-		_puts(s);
-		count += _strlen(s);
-		return (count);
 	}
+	s = convert_to_format("0123456789ABCDEF", i, base);
+	_puts(s);
+	count += _strlen(s);
+	return (count);
 }
 
 

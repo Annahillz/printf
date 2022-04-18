@@ -37,7 +37,7 @@ int loop_format(const char *format, va_list args)
 {
 	int i = 0, counter = 0, flag = 0, check_flag = 0, f_counter = 0;
 
-	while (i < _strlen(format) && *(format + i) != '\0')
+	while (i < _strlen((char *)format) && *(format + i) != '\0')
 	{
 		char charac = format[i];
 
@@ -45,7 +45,7 @@ int loop_format(const char *format, va_list args)
 		{
 			flag++, i++;
 			charac = format[i];
-			if (charac == '\0' && _strlen(format) == 1)
+			if (charac == '\0' && _strlen((char *)format) == 1)
 				return (-1);
 			if (charac == '\0')
 				return (counter);
@@ -143,7 +143,7 @@ int _switch(char c, va_list arg)
 			count += print_addr(arg);
 			break;
 		case 'o':
-			count += print_octal(arg, 8);
+			count += print_unsignedInt(arg, 8);
 			break;
 		case 'r':
 			count += print_unknown(c);
