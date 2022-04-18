@@ -54,7 +54,7 @@ int loop_format(const char *format, va_list args)
 			else
 			{
 				f_counter = func_service(charac, args);
-				if (f_counter >= 0)
+				if (f_counter >= 0 && f_counter != -1)
 				{
 					i++;
 					charac = format[i];
@@ -62,6 +62,8 @@ int loop_format(const char *format, va_list args)
 						flag--;
 					counter += f_counter;
 				}
+				else if (f_counter == -1 && charac != '\n')
+					counter += _putchar('%');
 			}
 
 		}
