@@ -1,11 +1,11 @@
 #include "main.h"
+#include <stdarg.h>
 
 /**
  * _printf - function produces output according to a format.
  * @format: is a pointer to string
  * Return: is the count of printed characters
  */
-
 int _printf(const char *format, ...)
 {
 	const char *string;
@@ -33,7 +33,6 @@ int _printf(const char *format, ...)
  * @args: is a va_list args
  * Return: is an integer.
  */
-
 int loop_format(const char *format, va_list args)
 {
 	int i = 0, counter = 0, flag = 0, check_flag = 0, f_counter = 0;
@@ -82,12 +81,15 @@ int loop_format(const char *format, va_list args)
  * @charac: is a char
  * Return: is 1 if % was printed, 0 otherwise.
  */
-
 int check_percent(int *flag, char charac)
 {
 	int count = 0;
 
-	if (*flag == 2 && charac != '\0')
+	int tmp;
+
+	tmp = *flag;
+
+	if (tmp == 2 && charac == '%')
 		count += _putchar('%');
 	return (count);
 }
@@ -99,7 +101,6 @@ int check_percent(int *flag, char charac)
  * @args: is a va_list
  * Return: is the number of characters printed
  */
-
 int func_service(char charac, va_list args)
 {
 	int count = 0;
@@ -116,7 +117,6 @@ int func_service(char charac, va_list args)
  * @c: is a char
  * Return: count of printed characters
  */
-
 int _switch(char c, va_list arg)
 {
 	int count = 0;
@@ -134,10 +134,10 @@ int _switch(char c, va_list arg)
 			count += print_string(arg);
 			break;
 		case 'x':
-			count += print_base16_toLower(arg);
+			count += print_base16_upper_lower(arg, "0123456789abcdef");
 			break;
 		case 'X':
-			count += print_base16_toUpper(arg);
+			count += print_base16_upper_lower(arg, "0123456789ABCDEF");
 			break;
 		case 'p':
 			count += print_addr(arg);
@@ -146,75 +146,13 @@ int _switch(char c, va_list arg)
 			count += print_octal(arg, 8);
 			break;
 		case 'r':
-			count += print_unknown(arg);
+			count += print_unknown(c);
 			break;
 		case 'u':
-			count += print_unsignInt(arg, 10);
+			count += print_unsignedInt(arg, 10);
 			break;
 		default:
 			count = -1;
 	}
-	return (count);
-}
-
-/**
- * print_character - prints a character
- * @arg: is a va_list type
- * Return: 1
- */
-
-int print_character(va_list arg)
-{
-	int i;
-
-	i = va_arg(arg, int);
-	_putchar(i);
-	return (1);
-}
-
-/**
- * print_signInt - print sign
- * @arg: is a va_list argument
- * @base: e.g., base 10
- * Return: count of digits printed
- */
-
-int print_signInt(va_list arg, int base)
-{
-	int i = 0, count = 0;
-
-	char *s;
-
-	i = va_arg(arg, int);
-	if  (i < 0)
-	{
-		i = -(i);
-		count += _putchar('-');
-	}
-	s = convert_to_format(i, base);
-	_puts(s);
-	count += _strlen(s);
-	return (count);
-}
-
-/**
- * print_unsignedInt - print unsigned
- * @arg: is a va_list parameter
- * @base: is an integer
- * Return: is a count of printed characters
- */
-
-int print_unsignedInt(va_list arg, int base)
-{
-	int unsigned i;
-
-	char *s;
-
-	int count = 0;
-
-	i = va_arg(arg, int);
-	s = convert_to_format(i, base);
-	_puts(s);
-	count += _strlen(s);
 	return (count);
 }
