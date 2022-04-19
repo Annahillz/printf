@@ -8,9 +8,9 @@
  */
 int print_character(va_list arg)
 {
-	int i;
+	unsigned char i;
 
-	i = va_arg(arg, int);
+	i = (unsigned char)va_arg(arg, int);
 	_putchar(i);
 	return (1);
 }

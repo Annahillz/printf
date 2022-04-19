@@ -9,19 +9,19 @@
 
 int print_string(va_list arg)
 {
-	char *str;
+	const char *str;
 
 	int count = 0;
 
-	str = va_arg(arg, char *);
+	str = (const char *)va_arg(arg, char *);
 	if (!str)
 	{
 		str = "(null)";
-		_puts(str);
-		return (_strlen(str));
+		_puts((char *)str);
+		return (_strlen((char *)str));
 	}
-	_puts(str);
-	count += _strlen(str);
+	_puts((char *)str);
+	count += _strlen((char *)str);
 	return (count);
 }
 
