@@ -37,7 +37,7 @@ int loop_format(const char *format, va_list args)
 {
 	int i = 0, counter = 0, flag = 0, check_flag = 0, f_counter = 0;
 
-	while (i < _strlen((char *)format) && *(format + i) != '\0')
+	while (i < _strlen((char *)format) && *format != '\0')
 	{
 		char charac = format[i];
 
