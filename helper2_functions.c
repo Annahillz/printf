@@ -105,15 +105,3 @@ int print_addr(va_list arg)
 		i += _putchar(c[i]);
 	return (i);
 }
-
-/**
- * print_unknown - function prints unknown specifier
- * @charac: is a char
- * Return: count of printed characters
- */
-int print_unknown(char charac)
-{
-	_putchar('%');
-	_putchar(charac);
-	return (2);
-}

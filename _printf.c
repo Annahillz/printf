@@ -37,7 +37,7 @@ int loop_format(const char *format, va_list args)
 {
 	int i = 0, counter = 0, flag = 0, check_flag = 0, f_counter = 0;
 
-	while (i < _strlen((char *)format) && *format != '\0')
+	while (i < _strlen((char *)format) && *(format + i) != '\0')
 	{
 		char charac = format[i];
 
@@ -62,16 +62,16 @@ int loop_format(const char *format, va_list args)
 						flag--;
 					counter += f_counter;
 				}
-				else if (f_counter == -1 && charac != '\0')
-					counter += _putchar(charac), i++;
+				else if (f_counter == -1 && charac != '\n' && flag == 1)
+					counter += _putchar('%');
 			}
 
 		}
 		check_flag = check_percent(&flag, charac);
 		counter += check_flag;
-		if (check_flag == 0 && charac != '%' && charac != '\0' && f_counter != -1)
+		if (check_flag == 0 && charac != '%' && charac != '\0')
 			counter += _putchar(charac), i++;
-		flag = 0, f_counter = 0;
+		check_flag = 0;
 	}
 	return (counter);
 }
@@ -149,9 +149,6 @@ int _switch(char c, va_list arg)
 			break;
 		case 'o':
 			count += print_unsignedInt(arg, 8);
-			break;
-		case 'r':
-			count += print_unknown(c);
 			break;
 		case 'u':
 			count += print_unsignedInt(arg, 10);

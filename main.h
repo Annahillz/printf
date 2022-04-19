@@ -12,7 +12,6 @@ int print_signInt(va_list arg, int base);
 int print_unsignedInt(va_list arg, int base);
 int print_base16_upper_lower(va_list arg, char *rep);
 int print_addr(va_list arg);
-int print_unknown(char c);
 int print_string(va_list arg);
 int _putchar(char c);
 void _puts(char *str);
