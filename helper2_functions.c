@@ -41,7 +41,7 @@ int print_signInt(va_list arg, int base)
 
 
 /**
- * print_unsignedInt - print unsigned
+ * print_unsignedInt - function prints unsigned
  * @arg: is a va_list parameter
  * @base: is an integer
  * Return: is a count of printed characters
