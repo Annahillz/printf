@@ -50,9 +50,7 @@ int loop_format(const char *format, va_list args)
 			if (charac == '\0')
 				return (counter);
 			if (charac == '%')
-			{
 				flag++;
-			}
 			else
 			{
 				f_counter = func_service(charac, args);
@@ -65,15 +63,15 @@ int loop_format(const char *format, va_list args)
 					counter += f_counter;
 				}
 				else if (f_counter == -1 && charac != '\0')
-					counter += _putchar('%');
+					counter += _putchar(charac), i++;
 			}
 
 		}
 		check_flag = check_percent(&flag, charac);
 		counter += check_flag;
-		if (check_flag == 0 && charac != '%' && charac != '\0')
+		if (check_flag == 0 && charac != '%' && charac != '\0' && f_counter != -1)
 			counter += _putchar(charac), i++;
-		flag = 0;
+		flag = 0, f_counter = 0;
 	}
 	return (counter);
 }
