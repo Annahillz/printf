@@ -50,9 +50,10 @@ int loop_format(const char *format, va_list args)
 			if (charac == '\0')
 				return (counter);
 			if (charac == '%')
+			{
 				flag++;
-			else if ((charac >= 'a' && charac <= 'z') ||
-					(charac >= 'A' && charac <= 'Z'))
+			}
+			else
 			{
 				f_counter = func_service(charac, args);
 				if (f_counter >= 0 && f_counter != -1)
