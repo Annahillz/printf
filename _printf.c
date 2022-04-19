@@ -62,12 +62,13 @@ int loop_format(const char *format, va_list args)
 						flag--;
 					counter += f_counter;
 				}
-				else if (f_counter == -1 && charac != '\n')
+				else if (f_counter == -1 && charac != '\n' && format[i - 1] != '%')
 					counter += _putchar('%');
 			}
 
 		}
 		check_flag = check_percent(&flag, charac);
+		counter += check_flag;
 		if (check_flag == 0 && charac != '%' && charac != '\0')
 			counter += _putchar(charac), i++;
 		flag = 0;
@@ -91,7 +92,7 @@ int check_percent(int *flag, char charac)
 	tmp = *flag;
 
 	if (tmp == 2 && charac == '%')
-		count = 1;
+		count = _putchar('%');
 	return (count);
 }
 
