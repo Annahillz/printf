@@ -86,6 +86,7 @@ int main(void)
 }
 
 .SH SEE ALSO
+
 printf(3)
 .SH BUGS
 No known bugs.
